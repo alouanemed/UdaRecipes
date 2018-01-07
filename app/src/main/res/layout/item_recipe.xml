@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+    <variable
+        name="recipe"
+        type="com.malouane.udarecipes.data.entity.Recipe"
+        />
+  </data>
+
+  <RelativeLayout
+      android:layout_width="match_parent"
+      android:layout_height="300dp"
+      android:background="?attr/selectableItemBackground"
+      android:clickable="true"
+      android:focusable="true"
+      >
+    <android.support.v7.widget.CardView
+        android:id="@+id/card_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_marginTop="16dp"
+        android:clipChildren="true"
+        android:clipToPadding="true"
+        android:orientation="vertical"
+        android:transitionName="cardview"
+        app:cardElevation="4dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        tools:targetApi="lollipop"
+        >
+
+
+      <RelativeLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          android:orientation="vertical"
+          >
+        <ImageView
+            android:id="@+id/iv_cover"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:scaleType="fitStart"
+            android:transitionName="@string/shared_image"
+            app:url="@{recipe.image}"
+            tools:targetApi="lollipop"
+            />
+
+        <TextView
+            android:id="@+id/tv_recipe_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:padding="30dp"
+            android:text="@{recipe.name}"
+            android:textColor="@color/primaryDarkColor"
+            android:textSize="22sp"
+            tools:text="TEST"
+            />
+
+        <TextView
+            android:id="@+id/tv_servings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:paddingLeft="10dp"
+            android:text="@{String.valueOf(recipe.servings)}"
+            android:textColor="@color/colorAccent"
+            android:textSize="16sp"
+            tools:text="TEST"
+            />
+
+      </RelativeLayout>
+
+    </android.support.v7.widget.CardView>
+
+  </RelativeLayout>
+</layout>
