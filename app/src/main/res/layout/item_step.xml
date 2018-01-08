@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+
+  <data>
+    <variable
+        name="step"
+        type="com.malouane.udarecipes.data.entity.Step"
+        />
+  </data>
+  <android.support.v7.widget.CardView
+      android:id="@+id/card_view"
+      android:layout_width="match_parent"
+      android:layout_height="100dp"
+      android:layout_gravity="center"
+      android:layout_margin="6dp"
+      android:clickable="true"
+      android:foreground="?android:attr/selectableItemBackground"
+      card_view:cardCornerRadius="3dp"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        >
+
+      <ImageView
+          android:id="@+id/iv_step_thumbnail"
+          android:layout_width="120dp"
+          android:layout_height="wrap_content"
+          android:contentDescription="step_thumbnail"
+          android:scaleType="centerCrop"
+          card_view:srcCompat="@drawable/ic_movie_black_24dp"
+          />
+
+      <android.support.constraint.ConstraintLayout
+          android:layout_width="match_parent"
+          android:layout_height="match_parent"
+          >
+
+        <TextView
+            android:id="@+id/tv_step"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:text="@{step.shortDescription}"
+            android:textColor="@color/primaryDarkColor"
+            android:textSize="24sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toTopOf="parent"
+            tools:text="TEST"
+            />
+
+        <TextView
+            android:id="@+id/tv_long_description"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="8dp"
+            android:layout_marginStart="8dp"
+            android:layout_marginTop="8dp"
+            android:paddingEnd="8dp"
+            android:paddingStart="8dp"
+            android:textColor="#676966"
+            android:textSize="16sp"
+            card_view:layout_constraintStart_toStartOf="parent"
+            card_view:layout_constraintTop_toBottomOf="@+id/tv_step"
+            tools:text="this is what to do"
+            />
+
+        <ImageView
+            android:id="@+id/fade_cover"
+            android:layout_width="match_parent"
+            android:layout_height="24dp"
+            android:background="@drawable/fade_gradient"
+            android:contentDescription="fadeout"
+            card_view:layout_constraintBottom_toBottomOf="parent"
+            card_view:layout_constraintEnd_toEndOf="parent"
+            card_view:layout_constraintStart_toStartOf="parent"
+            tools:ignore="HardcodedText"
+            />
+      </android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+  </android.support.v7.widget.CardView>
+</layout>

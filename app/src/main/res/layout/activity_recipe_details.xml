@@ -27,8 +27,8 @@
     </android.support.design.widget.AppBarLayout>
 
     <fragment
-        android:id="@+id/recipes_list"
-        android:name="com.malouane.udarecipes.features.main.RecipeListFragment"
+        android:id="@+id/step_list_fragment"
+        android:name="com.malouane.udarecipes.features.detail.DetailsListFragment"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior"

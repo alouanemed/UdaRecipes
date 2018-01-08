@@ -1,4 +1,4 @@
-package com.malouane.udarecipes.ui.main;
+package com.malouane.udarecipes.features.main;
 
 import android.support.test.rule.ActivityTestRule;
 import com.malouane.udarecipes.R;

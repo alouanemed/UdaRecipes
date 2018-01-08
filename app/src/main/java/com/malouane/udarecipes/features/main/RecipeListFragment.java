@@ -1,6 +1,7 @@
-package com.malouane.udarecipes.ui.main;
+package com.malouane.udarecipes.features.main;
 
 import android.arch.lifecycle.LifecycleFragment;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -10,8 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.databinding.FragmentRecipeListBinding;
+import com.malouane.udarecipes.features.detail.RecipeDetailActivity;
+import com.orhanobut.hawk.Hawk;
 import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
+import timber.log.Timber;
 
 public class RecipeListFragment extends LifecycleFragment implements RecipeListCallback {
 
@@ -50,10 +54,10 @@ public class RecipeListFragment extends LifecycleFragment implements RecipeListC
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
-    getRecipesSortedBy(false);
+    getRecipes(false);
   }
 
-  private void getRecipesSortedBy(boolean forceUpdate) {
+  private void getRecipes(boolean forceUpdate) {
     hideLoading(false);
     recipeListViewModel.getRecipesList(forceUpdate).observe(this, listResource -> {
       hideLoading(true);
@@ -71,6 +75,9 @@ public class RecipeListFragment extends LifecycleFragment implements RecipeListC
   }
 
   @Override public void onRecipeClicked(Recipe recipeEntity, View sharedView) {
-    //Open detail view
+    Timber.d("onRecipeClicked");
+    Hawk.put(Recipe.KEY_RECIPE, recipeEntity);
+    startActivity(new Intent(getActivity(), RecipeDetailActivity.class));
+
   }
 }

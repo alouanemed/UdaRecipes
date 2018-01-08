@@ -3,6 +3,7 @@ package com.malouane.udarecipes;
 import android.app.Activity;
 import android.app.Application;
 import com.malouane.udarecipes.di.DaggerAppComponent;
+import com.orhanobut.hawk.Hawk;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.HasActivityInjector;
@@ -27,6 +28,8 @@ public class UdaRecipesApp extends Application implements HasActivityInjector {
 
     //init Timber
     Timber.plant(new Timber.DebugTree());
+
+    Hawk.init(this).build();
   }
 
   @Override public AndroidInjector<Activity> activityInjector() {

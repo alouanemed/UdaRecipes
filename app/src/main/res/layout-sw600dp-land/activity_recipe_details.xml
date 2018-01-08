@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    >
+  <LinearLayout
+      android:layout_width="match_parent"
+      android:layout_height="match_parent"
+      android:baselineAligned="false"
+      android:orientation="horizontal"
+      tools:context=".features.detail.RecipeDetailActivity"
+      >
+    <fragment
+        android:id="@+id/step_list_fragment"
+        android:name="com.malouane.udarecipes.features.detail.DetailsListFragment"
+        android:layout_width="@dimen/step_list_width"
+        android:layout_height="match_parent"
+        />
+
+    <View
+        android:layout_width="1dp"
+        android:layout_height="match_parent"
+        android:background="@android:color/darker_gray"
+        />
+
+    <fragment
+        android:id="@+id/step_detail_fragment"
+        android:name="com.malouane.udarecipes.features.step.StepDetailFragment"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        />
+  </LinearLayout>
+</layout>

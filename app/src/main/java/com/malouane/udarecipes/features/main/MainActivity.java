@@ -1,4 +1,4 @@
-package com.malouane.udarecipes.ui.main;
+package com.malouane.udarecipes.features.main;
 
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;

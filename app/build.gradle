@@ -48,41 +48,42 @@ repositories {
 dependencies {
   compile fileTree(dir: 'libs', include: ['*.jar'])
 
-  compile rootProject.ext.supportLibAppCompat
-  compile rootProject.ext.supportLibDesign
-  compile rootProject.ext.supportCardView
-  compile rootProject.ext.archRuntime
-  compile rootProject.ext.archExtension
+  implementation rootProject.ext.supportLibAppCompat
+  implementation rootProject.ext.supportLibDesign
+  implementation rootProject.ext.supportCardView
+  implementation rootProject.ext.archRuntime
+  implementation rootProject.ext.archExtension
   annotationProcessor rootProject.ext.archCompiler
-  compile rootProject.ext.okhttp
-  compile rootProject.ext.okhttpInterceptor
-  compile rootProject.ext.okhttpUrlConnection
-  compile rootProject.ext.rxJava
-  compile rootProject.ext.rxAndroid
-  compile rootProject.ext.retrofit
-  compile rootProject.ext.gsonConverter
+  implementation rootProject.ext.okhttp
+  implementation rootProject.ext.okhttpInterceptor
+  implementation rootProject.ext.okhttpUrlConnection
+  implementation rootProject.ext.rxJava
+  implementation rootProject.ext.rxAndroid
+  implementation rootProject.ext.retrofit
+  implementation rootProject.ext.gsonConverter
   annotationProcessor rootProject.ext.daggerCompiler
-  compile rootProject.ext.dagger
-  compile rootProject.ext.daggerAndroid
-  compile rootProject.ext.daggerAndroidSupport
+  implementation rootProject.ext.dagger
+  implementation rootProject.ext.daggerAndroid
+  implementation rootProject.ext.daggerAndroidSupport
   annotationProcessor rootProject.ext.daggerAndroidProcessor
-  compile rootProject.ext.picasso
-  compile rootProject.ext.timber
-  compile rootProject.ext.retrofitRxAdapter
-  compile rootProject.ext.retrofitGson
-  compile rootProject.ext.constrains
+  implementation rootProject.ext.picasso
+  implementation rootProject.ext.timber
+  implementation rootProject.ext.retrofitRxAdapter
+  implementation rootProject.ext.retrofitGson
+  implementation rootProject.ext.constrains
+  implementation 'com.orhanobut:hawk:2.0.1'
 
-  testCompile rootProject.ext.junit
-  androidTestCompile rootProject.ext.testRunner
-  androidTestCompile rootProject.ext.espressoCore
+  compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
+  testImplementation rootProject.ext.junit
+  androidTestImplementation rootProject.ext.testRunner
+  androidTestImplementation rootProject.ext.espressoCore
   // Force usage of support annotations in the test app, since it is internally used by the runner module.
-  androidTestCompile rootProject.ext.supportAnnotations
-  androidTestCompile rootProject.ext.espressoContrib, {
+  androidTestImplementation rootProject.ext.supportAnnotations
+  androidTestImplementation rootProject.ext.espressoContrib, {
     exclude group: 'com.android.support', module: 'support-annotations'
     exclude group: 'com.android.support', module: 'support-v4'
     exclude group: 'com.android.support', module: 'design'
     exclude group: 'com.android.support', module: 'recyclerview-v7'
   }
-  androidTestCompile rootProject.ext.mockito
-
+  androidTestImplementation rootProject.ext.mockito
 }

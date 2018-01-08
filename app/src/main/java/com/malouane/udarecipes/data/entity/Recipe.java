@@ -6,6 +6,8 @@ import java.util.List;
 
 public class Recipe {
 
+  public static final String KEY_RECIPE = "KEY_RECIPE";
+
   @SerializedName("id") @Expose private Integer id;
   @SerializedName("name") @Expose private String name;
   @SerializedName("ingredients") @Expose private List<Ingredient> ingredients = null;

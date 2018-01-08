@@ -1,4 +1,4 @@
-package com.malouane.udarecipes.ui.main;
+package com.malouane.udarecipes.features.main;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -6,7 +6,7 @@ import android.view.LayoutInflater;
 import android.view.ViewGroup;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.databinding.ItemRecipeBinding;
-import com.malouane.udarecipes.ui.BaseAdapter;
+import com.malouane.udarecipes.features.BaseAdapter;
 import java.util.ArrayList;
 import java.util.List;
 

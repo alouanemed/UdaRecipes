@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    >
+  <data>
+    <variable
+        name="recipe"
+        type="com.malouane.udarecipes.data.entity.Recipe"
+        />
+  </data>
+  <ScrollView
+
+      android:id="@+id/scroll"
+      android:layout_width="match_parent"
+      android:layout_height="wrap_content"
+      >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="@dimen/margin_half_size"
+        >
+      <TextView
+          android:id="@+id/tv_ingredients"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:text="@string/ingredients"
+          android:textColor="@color/colorAccent"
+          android:textSize="@dimen/header_size"
+          />
+
+      <FrameLayout
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          >
+
+        <android.support.v7.widget.RecyclerView
+            android:id="@+id/rv_ingredients"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="2dp"
+            android:scrollbars="none"
+            app:ingredients="@{recipe.ingredients}"
+            />
+
+      </FrameLayout>
+
+      <TextView
+          android:id="@+id/tv_steps"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:padding="16dp"
+          android:text="@string/steps"
+          android:textColor="@color/colorAccent"
+          android:textSize="@dimen/header_size"
+          />
+
+      <android.support.v7.widget.RecyclerView
+          android:id="@+id/rv_steps"
+          android:layout_width="match_parent"
+          android:layout_height="wrap_content"
+          android:clickable="true"
+          android:padding="2dp"
+          android:scrollbars="none"
+          app:steps="@{recipe.steps}"
+          />
+    </LinearLayout>
+
+  </ScrollView>
+</layout>

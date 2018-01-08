@@ -1,6 +1,6 @@
 package com.malouane.udarecipes.di;
 
-import com.malouane.udarecipes.ui.main.RecipeListFragment;
+import com.malouane.udarecipes.features.main.RecipeListFragment;
 import dagger.Module;
 import dagger.android.ContributesAndroidInjector;
 
