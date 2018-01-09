@@ -8,8 +8,6 @@
 
   <application
       android:name=".UdaRecipesApp"
-      android:allowBackup="true"
-      android:fullBackupContent="@xml/backup_descriptor"
       android:icon="@mipmap/ic_launcher"
       android:label="@string/app_name"
       android:supportsRtl="true"
@@ -23,7 +21,9 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".features.detail.RecipeDetailActivity"/>
+    <activity android:name=".features.detail.RecipeDetailActivity"
+        />
+    <activity android:name=".features.step.StepDetailActivity"/>
   </application>
 
 </manifest>

@@ -1,6 +1,7 @@
 package com.malouane.udarecipes.features.detail;
 
 import android.arch.lifecycle.LifecycleRegistry;
+import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
@@ -8,13 +9,15 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.data.entity.Recipe;
+import com.malouane.udarecipes.data.entity.Step;
 import com.malouane.udarecipes.databinding.ActivityRecipeDetailsBinding;
+import com.malouane.udarecipes.features.step.StepDetailActivity;
 import com.malouane.udarecipes.features.step.StepDetailFragment;
 import com.orhanobut.hawk.Hawk;
 import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
-public class RecipeDetailActivity extends AppCompatActivity {
+public class RecipeDetailActivity extends AppCompatActivity implements StepsListCallback {
 
   private static final String KEY_RECIPE_POSTER = "KEY_RECIPE_POSTER";
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
@@ -28,12 +31,10 @@ public class RecipeDetailActivity extends AppCompatActivity {
     super.onCreate(savedInstanceState);
     binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
 
-    //setSupportActionBar(binding.toolbar);
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
     if (Hawk.contains(Recipe.KEY_RECIPE)) {
-      //binding.setPosterPath(getIntent().getStringExtra(KEY_MOVIE_POSTER));
       recipeDetailViewModel.setRecipe(Hawk.get(Recipe.KEY_RECIPE));
     }
 
@@ -58,5 +59,24 @@ public class RecipeDetailActivity extends AppCompatActivity {
 
   @Override public LifecycleRegistry getLifecycle() {
     return lifecycleRegistry;
+  }
+
+  @Override public void onStepClicked(Step step) {
+
+  }
+
+  @Override public void onStepClickedWithPosition(Step step, int position) {
+    if (stepDetailFragment != null && stepDetailFragment.isAdded()) {
+      //has detail fragment
+      stepDetailFragment.bindStep(position);
+    } else {
+      Class destinationClass = StepDetailActivity.class;
+      Intent intentToStartDetailActivity = new Intent(this, destinationClass);
+
+      Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipeDetailViewModel.getRecipe().getValue());
+      Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
+
+      this.startActivity(intentToStartDetailActivity);
+    }
   }
 }

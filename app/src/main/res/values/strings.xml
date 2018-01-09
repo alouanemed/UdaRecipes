@@ -5,4 +5,7 @@
   <string name="ingredients">Ingredients</string>
   <string name="steps">Steps</string>
   <string name="next_step_text">Next</string>
+
+  <string name="step_detail_title">Step Number %1$s</string>
+
 </resources>

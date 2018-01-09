@@ -38,7 +38,6 @@ import com.malouane.udarecipes.databinding.FragmentStepDetailBinding;
 
 public class StepDetailFragment extends Fragment implements ExoPlayer.EventListener {
 
-  private static final String TAG = "STEP_DETAIL_TAG";
   private static final String NOW_PLAYING_STATE = "NOW_PLAYING_STATE";
   private static SimpleExoPlayer mExoPlayer;
   private static MediaSessionCompat mMediaSession;
@@ -60,16 +59,15 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
       @Nullable Bundle savedInstanceState) {
 
     binding = FragmentStepDetailBinding.inflate(inflater, container, false);
+    mContext = getContext();
 
     if (mContext instanceof SetStepIndexHandler) {
       mSetStepIndexHandler = (SetStepIndexHandler) mContext;
     }
 
-    binding.bNextStep.setOnClickListener(new View.OnClickListener() {
-      @Override public void onClick(View view) {
-        bindStep(mStepIndex + 1);
-        binding.svStepDetail.scrollTo(0, 0);
-      }
+    binding.bNextStep.setOnClickListener(view -> {
+      bindStep(mStepIndex + 1);
+      binding.svStepDetail.scrollTo(0, 0);
     });
 
     binding.bNextStep.setVisibility(View.GONE);
@@ -84,6 +82,8 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
         mNowPlaying = savedInstanceState.getString(NOW_PLAYING_STATE);
       }
     }
+
+    mRootView = binding.getRoot();
 
     return binding.getRoot();
   }
@@ -128,11 +128,6 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
   @Override public void onSaveInstanceState(@NonNull Bundle outState) {
     super.onSaveInstanceState(outState);
     outState.putString(NOW_PLAYING_STATE, mNowPlaying);
-  }
-
-  //
-  public void hideFullScreenButton() {
-
   }
 
   public void unloadStep() {
@@ -232,7 +227,7 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
 
     if (mMediaSession == null) {
       // Create a MediaSessionCompat.
-      mMediaSession = new MediaSessionCompat(mContext, TAG);
+      mMediaSession = new MediaSessionCompat(mContext, "TAG");
 
       // Enable callbacks from MediaButtons and TransportControls.
       mMediaSession.setFlags(MediaSessionCompat.FLAG_HANDLES_MEDIA_BUTTONS

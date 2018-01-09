@@ -29,7 +29,7 @@ public class StepsAdapter extends BaseAdapter<StepsAdapter.StepViewHolder, Step>
   }
 
   @Override public StepViewHolder onCreateViewHolder(ViewGroup viewGroup, int i) {
-    return StepViewHolder.create(LayoutInflater.from(viewGroup.getContext()), viewGroup);
+    return StepViewHolder.create(LayoutInflater.from(viewGroup.getContext()), viewGroup, callback);
   }
 
   @Override public void onBindViewHolder(StepViewHolder viewHolder, int i) {
@@ -44,14 +44,19 @@ public class StepsAdapter extends BaseAdapter<StepsAdapter.StepViewHolder, Step>
 
     ItemStepBinding binding;
 
-    public StepViewHolder(ItemStepBinding binding) {
+    public StepViewHolder(ItemStepBinding binding, StepsListCallback callback) {
       super(binding.getRoot());
       this.binding = binding;
+
+      binding.getRoot()
+          .setOnClickListener(
+              v -> callback.onStepClickedWithPosition(binding.getStep(), getAdapterPosition()));
     }
 
-    public static StepViewHolder create(LayoutInflater inflater, ViewGroup parent) {
+    public static StepViewHolder create(LayoutInflater inflater, ViewGroup parent,
+        StepsListCallback callback) {
       ItemStepBinding inflate = ItemStepBinding.inflate(inflater, parent, false);
-      return new StepViewHolder(inflate);
+      return new StepViewHolder(inflate, callback);
     }
 
     public void onBind(Step step) {

@@ -1,5 +1,6 @@
 package com.malouane.udarecipes.features.detail;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -21,6 +22,7 @@ public class DetailsListFragment extends Fragment implements StepsListCallback {
   private IngredientsAdapter ingredientsAdapter;
   private StepsAdapter stepsAdapter;
   private boolean[] mIngredientSelection;
+  private StepsListCallback callback;
 
   public DetailsListFragment() {
   }
@@ -56,12 +58,20 @@ public class DetailsListFragment extends Fragment implements StepsListCallback {
     return binding.getRoot();
   }
 
-  @Override public void onStepClicked(Step step) {
-
+  @Override public void onAttach(Context context) {
+    super.onAttach(context);
+    try {
+      callback = (StepsListCallback) context;
+    } catch (ClassCastException e) {
+      throw new ClassCastException(context.toString() + " must implement StepsListCallback");
+    }
   }
 
-  @Override public void onTrailerShareClicked(String ytKey) {
+  @Override public void onStepClicked(Step step) {
+  }
 
+  @Override public void onStepClickedWithPosition(Step step, int position) {
+    callback.onStepClickedWithPosition(step, position);
   }
 
   public void bindRecipe(Recipe recipe) {
