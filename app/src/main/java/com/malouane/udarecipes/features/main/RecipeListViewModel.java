@@ -14,37 +14,40 @@ import javax.inject.Inject;
 
 public class RecipeListViewModel extends BaseViewModel {
 
-  private MutableLiveData<RecipeEntity> RecipesList;
+  private MutableLiveData<RecipeEntity> recipesList;
   private DataManager dataManager;
 
   @Inject public RecipeListViewModel(DataManager dataManager) {
     this.dataManager = dataManager;
   }
 
+  public void setListIfAvailable(MutableLiveData<RecipeEntity> recipesList) {
+    this.recipesList = recipesList;
+  }
+
   public LiveData<RecipeEntity> getRecipesList(boolean shouldGetData) {
-    if (RecipesList == null) {
+    if (recipesList == null) {
       shouldGetData = true;
     } else {
-      if (RecipesList.getValue() == null) shouldGetData = true;
+      if (recipesList.getValue() == null) shouldGetData = true;
     }
 
     if (shouldGetData) {
-      RecipesList = new MutableLiveData<>();
-      loadRecipesList(RecipesList);
+      recipesList = new MutableLiveData<>();
+      loadRecipesList(recipesList);
     }
 
-    return RecipesList;
+    return recipesList;
   }
 
   private void loadRecipesList(MutableLiveData<RecipeEntity> RecipesList) {
     addDisposable(performGeRecipes().subscribe((response, throwable) -> {
-      RecipeEntity recipesWrapper = new RecipeEntity();
-      recipesWrapper.setRecipeEntities(response);
+      RecipeEntity recipesWrapper = new RecipeEntity(response);
       RecipesList.setValue(recipesWrapper);
     }));
   }
 
-  private Single<List<Recipe>> performGeRecipes() {
+  public Single<List<Recipe>> performGeRecipes() {
     return dataManager.performGetRecipes()
         .subscribeOn(Schedulers.newThread())
         .observeOn(AndroidSchedulers.mainThread());

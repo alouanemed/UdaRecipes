@@ -39,6 +39,7 @@ ext {
     rxAndroidVersion = '2.0.1'
     retrofitVersion = '2.3.0'
     constraintsVersion = '1.0.2'
+    hamcrestVersion = '1.3'
 
     supportLibAppCompat = "com.android.support:appcompat-v7:$supportLibVersion"
     supportCardView = "com.android.support:cardview-v7:$supportLibVersion"
@@ -63,7 +64,7 @@ ext {
     retrofitRxAdapter = "com.squareup.retrofit2:adapter-rxjava2:$retrofitVersion"
     retrofitGson = "com.squareup.retrofit2:converter-gson:$retrofitVersion"
     constrains = "com.android.support.constraint:constraint-layout:$constraintsVersion"
-
+    hamcrest = "org.hamcrest:hamcrest-all:$hamcrestVersion"
     junitVersion = '4.12'
     testRunnerVersion = '1.0.1'
     espressoCoreVersion = '3.0.1'
@@ -75,6 +76,7 @@ ext {
     espressoCore = "com.android.support.test.espresso:espresso-core:$espressoCoreVersion"
     espressoContrib = "com.android.support.test.espresso:espresso-contrib:$espressoContribVersion"
     espressoIdling = "com.android.support.test.espresso:espresso-idling-resource:$espressoCoreVersion"
+    espressoIntent = "com.android.support.test.espresso:espresso-intents:$espressoCoreVersion"
     supportAnnotations = "com.android.support:support-annotations:$supportLibVersion"
     mockito = "org.mockito:mockito-core:$mockitoVersion"
 }

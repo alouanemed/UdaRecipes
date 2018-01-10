@@ -24,6 +24,7 @@
     <activity android:name=".features.detail.RecipeDetailActivity"
         />
     <activity android:name=".features.step.StepDetailActivity"/>
+    <activity android:name=".testing.SingleFragmentActivity"/>
   </application>
 
 </manifest>

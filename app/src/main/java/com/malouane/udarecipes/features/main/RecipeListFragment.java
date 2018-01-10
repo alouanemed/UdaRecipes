@@ -13,9 +13,7 @@ import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.databinding.FragmentRecipeListBinding;
 import com.malouane.udarecipes.features.detail.RecipeDetailActivity;
 import com.orhanobut.hawk.Hawk;
-import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
-import timber.log.Timber;
 
 public class RecipeListFragment extends LifecycleFragment implements RecipeListCallback {
 
@@ -25,15 +23,11 @@ public class RecipeListFragment extends LifecycleFragment implements RecipeListC
   private RecipeListAdapter adapter;
 
   public static RecipeListFragment newInstance() {
-    Bundle args = new Bundle();
-    RecipeListFragment fragment = new RecipeListFragment();
-    fragment.setArguments(args);
-    return fragment;
+    return new RecipeListFragment();
   }
 
   @Override public void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
-    AndroidSupportInjection.inject(this);
     setHasOptionsMenu(true);
   }
 
@@ -75,7 +69,6 @@ public class RecipeListFragment extends LifecycleFragment implements RecipeListC
   }
 
   @Override public void onRecipeClicked(Recipe recipeEntity, View sharedView) {
-    Timber.d("onRecipeClicked");
     Hawk.put(Recipe.KEY_RECIPE, recipeEntity);
     startActivity(new Intent(getActivity(), RecipeDetailActivity.class));
 

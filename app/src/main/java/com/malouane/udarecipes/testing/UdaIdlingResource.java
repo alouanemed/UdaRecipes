@@ -1,4 +1,4 @@
-package com.malouane.udarecipes.utils;
+package com.malouane.udarecipes.testing;
 
 import android.support.annotation.Nullable;
 import android.support.test.espresso.IdlingResource;

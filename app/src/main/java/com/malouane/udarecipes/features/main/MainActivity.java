@@ -8,7 +8,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.databinding.ActivityMainBinding;
-import com.malouane.udarecipes.utils.UdaIdlingResource;
+import com.malouane.udarecipes.testing.UdaIdlingResource;
 import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;

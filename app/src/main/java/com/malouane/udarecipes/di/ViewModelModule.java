@@ -12,9 +12,6 @@ import dagger.multibindings.IntoMap;
 
   @Binds @IntoMap @ViewModelKey(RecipeListViewModel.class)
   abstract ViewModel bindsMovieListViewModel(RecipeListViewModel recipeListViewModel);
-/*
-  @Binds @IntoMap @ViewModelKey(RecipeDetailViewModel.class)
-  abstract ViewModel bindsMovieDetailViewModel(RecipeDetailViewModel movieDetailViewModel);*/
 
   @Binds abstract ViewModelProvider.Factory bindsViewModelFactory(
       AppViewModelFactory movisViewModelFactory);
