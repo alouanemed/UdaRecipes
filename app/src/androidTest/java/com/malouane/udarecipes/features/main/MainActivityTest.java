@@ -1,7 +1,11 @@
 package com.malouane.udarecipes.features.main;
 
+import android.support.test.espresso.IdlingRegistry;
+import android.support.test.espresso.IdlingResource;
 import android.support.test.rule.ActivityTestRule;
 import com.malouane.udarecipes.R;
+import org.junit.After;
+import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -11,28 +15,27 @@ import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
 import static android.support.test.espresso.matcher.ViewMatchers.isDisplayed;
 import static android.support.test.espresso.matcher.ViewMatchers.withId;
-import static org.hamcrest.Matchers.not;
 
 @RunWith(MockitoJUnitRunner.class) public class MainActivityTest {
 
-    @Rule public ActivityTestRule<MainActivity> mActivityTestRule = new ActivityTestRule<>(MainActivity.class, false, false);
+  @Rule public ActivityTestRule<MainActivity> activityActivityTestRule =
+      new ActivityTestRule<>(MainActivity.class, true, true);
+  private IdlingResource idlingResource;
 
-    @Test public void launchMainActivity() throws Exception {
-        mActivityTestRule.launchActivity(null);
-        onView(withId(R.id.pb_loading)).check(matches(isDisplayed()));
-      onView(withId(R.id.recyclerView_recipes_list)).check(matches(not(isDisplayed())));
+  @Before public void setUp() {
+    idlingResource = activityActivityTestRule.getActivity().getIdlingResource();
+    IdlingRegistry.getInstance().register(idlingResource);
 
-        // Added a sleep statement to match the app's execution delay.
-        // The recommended way to handle such scenarios is to use Espresso idling resources:
-        // https://google.github.io/android-testing-support-library/docs/espresso/idling-resource/index.html
-        try {
-            Thread.sleep(700);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        }
+    activityActivityTestRule.getActivity().getSupportFragmentManager().beginTransaction();
+  }
 
-        onView(withId(R.id.pb_loading)).check(matches(not(isDisplayed())));
-      onView(withId(R.id.recyclerView_recipes_list)).check(matches(isDisplayed()));
+  @Test public void launchMainActivity() throws Exception {
+    onView(withId(R.id.pb_loading)).check(matches(isDisplayed()));
+  }
+
+  @After public void tearDown() {
+    if (idlingResource != null) {
+      IdlingRegistry.getInstance().unregister(idlingResource);
     }
-
+  }
 }
