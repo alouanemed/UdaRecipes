@@ -13,6 +13,7 @@ import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.databinding.FragmentRecipeListBinding;
 import com.malouane.udarecipes.features.detail.RecipeDetailActivity;
 import com.orhanobut.hawk.Hawk;
+import dagger.android.support.AndroidSupportInjection;
 import javax.inject.Inject;
 
 public class RecipeListFragment extends LifecycleFragment implements RecipeListCallback {
@@ -48,6 +49,7 @@ public class RecipeListFragment extends LifecycleFragment implements RecipeListC
 
   @Override public void onActivityCreated(@Nullable Bundle savedInstanceState) {
     super.onActivityCreated(savedInstanceState);
+    AndroidSupportInjection.inject(this);
     getRecipes(false);
   }
 
