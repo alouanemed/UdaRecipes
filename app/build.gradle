@@ -72,13 +72,13 @@ dependencies {
   implementation rootProject.ext.retrofitGson
   implementation rootProject.ext.constrains
 
-  implementation 'com.orhanobut:hawk:2.0.1'
-  androidTestImplementation 'org.mockito:mockito-android:2.8.47'
-  compile 'com.google.android.exoplayer:exoplayer:r2.2.0'
 
+  implementation rootProject.ext.hawk
+  implementation rootProject.ext.exoPlayer
   testImplementation rootProject.ext.junit
   testImplementation rootProject.ext.hamcrest
   androidTestImplementation rootProject.ext.mockito
+  androidTestImplementation rootProject.ext.mockitoAndroid
   androidTestImplementation rootProject.ext.testRunner
   androidTestImplementation rootProject.ext.espressoCore
   androidTestImplementation rootProject.ext.espressoIntent
