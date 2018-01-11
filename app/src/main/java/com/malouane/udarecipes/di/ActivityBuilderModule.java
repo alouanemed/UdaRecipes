@@ -10,5 +10,5 @@ import dagger.android.ContributesAndroidInjector;
   @ContributesAndroidInjector(modules = FragmentBuildersModule.class)
   abstract MainActivity mainActivity();
 
-  @ContributesAndroidInjector abstract RecipeDetailActivity movieDetailActivity();
+  @ContributesAndroidInjector abstract RecipeDetailActivity recipeDetailActivity();
 }

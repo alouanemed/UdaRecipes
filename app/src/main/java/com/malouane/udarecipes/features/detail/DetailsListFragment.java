@@ -42,6 +42,8 @@ public class DetailsListFragment extends Fragment implements StepsListCallback {
 
     binding.rvIngredients.setLayoutManager(new LinearLayoutManager(getContext()));
     binding.rvSteps.setLayoutManager(new LinearLayoutManager(getContext()));
+    binding.rvSteps.setNestedScrollingEnabled(false);
+    binding.rvIngredients.setNestedScrollingEnabled(false);
 
     ingredientsAdapter = new IngredientsAdapter();
     stepsAdapter = new StepsAdapter(this);

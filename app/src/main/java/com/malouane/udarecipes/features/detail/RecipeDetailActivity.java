@@ -15,7 +15,6 @@ import com.malouane.udarecipes.di.Injectable;
 import com.malouane.udarecipes.features.step.StepDetailActivity;
 import com.malouane.udarecipes.features.step.StepDetailFragment;
 import com.orhanobut.hawk.Hawk;
-import javax.inject.Inject;
 
 public class RecipeDetailActivity extends AppCompatActivity
     implements StepsListCallback, Injectable {
@@ -23,7 +22,7 @@ public class RecipeDetailActivity extends AppCompatActivity
   private static final String KEY_RECIPE_POSTER = "KEY_RECIPE_POSTER";
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
   ActivityRecipeDetailsBinding binding;
-  @Inject RecipeDetailViewModel recipeDetailViewModel;
+  Recipe recipe;
   private DetailsListFragment detailsListFragment;
   private StepDetailFragment stepDetailFragment;
 
@@ -33,19 +32,15 @@ public class RecipeDetailActivity extends AppCompatActivity
 
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-    if (recipeDetailViewModel != null) {
-      if (Hawk.contains(Recipe.KEY_RECIPE)) {
-        recipeDetailViewModel.setRecipe(Hawk.get(Recipe.KEY_RECIPE));
-        initFragments();
-      }
-    }
+
+    initFragments();
   }
 
   private void initFragments() {
 
     FragmentManager fm = getSupportFragmentManager();
     detailsListFragment = (DetailsListFragment) fm.findFragmentById(R.id.step_list_fragment);
-    Recipe recipe = recipeDetailViewModel.getRecipe().getValue();
+    recipe = Hawk.get(Recipe.KEY_RECIPE);
 
     setTitle(recipe.getName());
 
@@ -73,7 +68,7 @@ public class RecipeDetailActivity extends AppCompatActivity
       Class destinationClass = StepDetailActivity.class;
       Intent intentToStartDetailActivity = new Intent(this, destinationClass);
 
-      Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipeDetailViewModel.getRecipe().getValue());
+      Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipe);
       Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
 
       this.startActivity(intentToStartDetailActivity);
