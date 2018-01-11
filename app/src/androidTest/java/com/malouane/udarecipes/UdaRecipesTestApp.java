@@ -8,7 +8,7 @@ import com.orhanobut.hawk.Hawk;
  *
  * See @{@link UdaRecipesTestRunner}
  */
-public class UdaTestApp extends Application {
+public class UdaRecipesTestApp extends Application {
   @Override public void onCreate() {
     super.onCreate();
     Hawk.init(this).build();

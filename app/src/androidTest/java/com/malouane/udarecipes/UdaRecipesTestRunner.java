@@ -10,6 +10,6 @@ import android.support.test.runner.AndroidJUnitRunner;
 public class UdaRecipesTestRunner extends AndroidJUnitRunner {
   @Override public Application newApplication(ClassLoader cl, String className, Context context)
       throws InstantiationException, IllegalAccessException, ClassNotFoundException {
-    return super.newApplication(cl, UdaTestApp.class.getName(), context);
+    return super.newApplication(cl, UdaRecipesTestApp.class.getName(), context);
   }
 }
