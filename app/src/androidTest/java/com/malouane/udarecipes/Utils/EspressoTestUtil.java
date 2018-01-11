@@ -1,4 +1,4 @@
-package com.malouane.udarecipes;
+package com.malouane.udarecipes.Utils;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;

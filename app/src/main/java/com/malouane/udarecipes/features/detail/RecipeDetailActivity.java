@@ -11,13 +11,14 @@ import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.data.entity.Step;
 import com.malouane.udarecipes.databinding.ActivityRecipeDetailsBinding;
+import com.malouane.udarecipes.di.Injectable;
 import com.malouane.udarecipes.features.step.StepDetailActivity;
 import com.malouane.udarecipes.features.step.StepDetailFragment;
 import com.orhanobut.hawk.Hawk;
-import dagger.android.AndroidInjection;
 import javax.inject.Inject;
 
-public class RecipeDetailActivity extends AppCompatActivity implements StepsListCallback {
+public class RecipeDetailActivity extends AppCompatActivity
+    implements StepsListCallback, Injectable {
 
   private static final String KEY_RECIPE_POSTER = "KEY_RECIPE_POSTER";
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
@@ -27,18 +28,17 @@ public class RecipeDetailActivity extends AppCompatActivity implements StepsList
   private StepDetailFragment stepDetailFragment;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
-    AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
     binding = DataBindingUtil.setContentView(this, R.layout.activity_recipe_details);
 
     assert getSupportActionBar() != null;
     getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-
-    if (Hawk.contains(Recipe.KEY_RECIPE)) {
-      recipeDetailViewModel.setRecipe(Hawk.get(Recipe.KEY_RECIPE));
+    if (recipeDetailViewModel != null) {
+      if (Hawk.contains(Recipe.KEY_RECIPE)) {
+        recipeDetailViewModel.setRecipe(Hawk.get(Recipe.KEY_RECIPE));
+        initFragments();
+      }
     }
-
-    initFragments();
   }
 
   private void initFragments() {

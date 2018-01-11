@@ -4,11 +4,12 @@ import android.arch.lifecycle.MutableLiveData;
 import android.support.annotation.NonNull;
 import android.support.test.espresso.intent.Intents;
 import android.support.test.rule.ActivityTestRule;
-import com.malouane.udarecipes.EspressoTestUtil;
 import com.malouane.udarecipes.R;
-import com.malouane.udarecipes.RecyclerViewMatcher;
+import com.malouane.udarecipes.Utils.EspressoTestUtil;
+import com.malouane.udarecipes.Utils.RecyclerViewMatcher;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.data.entity.RecipeEntity;
+import com.malouane.udarecipes.features.detail.RecipeDetailActivity;
 import com.malouane.udarecipes.testing.SingleFragmentActivity;
 import com.malouane.udarecipes.utils.UdaRecipesUtils;
 import java.util.ArrayList;
@@ -22,6 +23,8 @@ import org.mockito.junit.MockitoJUnitRunner;
 import static android.support.test.espresso.Espresso.onView;
 import static android.support.test.espresso.action.ViewActions.click;
 import static android.support.test.espresso.assertion.ViewAssertions.matches;
+import static android.support.test.espresso.intent.Intents.intended;
+import static android.support.test.espresso.intent.matcher.IntentMatchers.hasComponent;
 import static android.support.test.espresso.matcher.ViewMatchers.hasDescendant;
 import static android.support.test.espresso.matcher.ViewMatchers.withText;
 import static com.malouane.udarecipes.utils.UdaRecipesUtils.generateIngredients;
@@ -50,7 +53,7 @@ import static org.mockito.Mockito.when;
     activityRule.getActivity().setFragment(fragment);
   }
 
-  @Test public void loadRepos() {
+  @Test public void loadDataList() {
 
     List<Recipe> recipes = setRecipes(4);
 
@@ -69,6 +72,7 @@ import static org.mockito.Mockito.when;
     Recipe clickedRecipe = setRecipes(2).get(1);
     Intents.init();
     onView(withText(clickedRecipe.getName())).perform(click());
+    intended(hasComponent(RecipeDetailActivity.class.getName()));
     Intents.release();
   }
 

@@ -2,7 +2,7 @@ package com.malouane.udarecipes;
 
 import android.app.Activity;
 import android.app.Application;
-import com.malouane.udarecipes.di.DaggerAppComponent;
+import com.malouane.udarecipes.di.AppInjector;
 import com.orhanobut.hawk.Hawk;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
@@ -24,7 +24,8 @@ public class UdaRecipesApp extends Application implements HasActivityInjector {
   }
 
   private void initializeComponent() {
-    DaggerAppComponent.builder().application(this).build().inject(this);
+    //DaggerAppComponent.builder().application(this).build().inject(this);
+    AppInjector.init(this);
 
     //init Timber
     Timber.plant(new Timber.DebugTree());

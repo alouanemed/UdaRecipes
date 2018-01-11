@@ -44,6 +44,7 @@ ext {
   supportCardView = "com.android.support:cardview-v7:$supportLibVersion"
   supportLibDesign = "com.android.support:design:$supportLibVersion"
   archRuntime = "android.arch.lifecycle:runtime:$archVersion"
+  archCoreTesting = "android.arch.core:core-testing:$archVersion"
   archExtension = "android.arch.lifecycle:extensions:$archVersion"
   archCompiler = "android.arch.lifecycle:compiler:$archVersion"
   dagger = "com.google.dagger:dagger:$daggerVersion"

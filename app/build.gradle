@@ -9,7 +9,7 @@ android {
     targetSdkVersion rootProject.ext.targetSdkVersion
     versionCode 1
     versionName "1.0"
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "com.malouane.udarecipes.UdaRecipesTestRunner"
 
     android.defaultConfig.vectorDrawables.useSupportLibrary = true
 
@@ -86,6 +86,7 @@ dependencies {
   implementation rootProject.ext.espressoIdling
   // Force usage of support annotations in the test app, since it is internally used by the runner module.
   androidTestImplementation rootProject.ext.supportAnnotations
+  androidTestImplementation rootProject.ext.archCoreTesting
   androidTestImplementation rootProject.ext.espressoContrib, {
     exclude group: 'com.android.support', module: 'support-annotations'
     exclude group: 'com.android.support', module: 'support-v4'
@@ -93,4 +94,9 @@ dependencies {
     exclude group: 'com.android.support', module: 'recyclerview-v7'
   }
 
+  testImplementation rootProject.ext.archCoreTesting, {
+    exclude group: 'com.android.support', module: 'support-compat'
+    exclude group: 'com.android.support', module: 'support-annotations'
+    exclude group: 'com.android.support', module: 'support-core-utils'
+  }
 }

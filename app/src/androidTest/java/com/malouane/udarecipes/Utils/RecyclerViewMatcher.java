@@ -1,4 +1,4 @@
-package com.malouane.udarecipes;
+package com.malouane.udarecipes.Utils;
 
 import android.content.res.Resources;
 import android.support.v7.widget.RecyclerView;

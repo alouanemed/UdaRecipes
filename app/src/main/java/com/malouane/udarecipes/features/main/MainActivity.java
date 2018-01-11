@@ -9,7 +9,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.databinding.ActivityMainBinding;
 import com.malouane.udarecipes.testing.UdaIdlingResource;
-import dagger.android.AndroidInjection;
 import dagger.android.AndroidInjector;
 import dagger.android.DispatchingAndroidInjector;
 import dagger.android.support.HasSupportFragmentInjector;
@@ -23,7 +22,6 @@ public class MainActivity extends AppCompatActivity implements HasSupportFragmen
   ActivityMainBinding binding;
 
   @Override protected void onCreate(Bundle savedInstanceState) {
-    AndroidInjection.inject(this);
     super.onCreate(savedInstanceState);
     binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
 
