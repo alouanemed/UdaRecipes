@@ -32,9 +32,11 @@ import com.google.android.exoplayer2.ui.SimpleExoPlayerView;
 import com.google.android.exoplayer2.upstream.DefaultDataSourceFactory;
 import com.google.android.exoplayer2.util.Util;
 import com.malouane.udarecipes.BuildConfig;
+import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.data.entity.Step;
 import com.malouane.udarecipes.databinding.FragmentStepDetailBinding;
+import com.squareup.picasso.Picasso;
 
 public class StepDetailFragment extends Fragment implements ExoPlayer.EventListener {
 
@@ -42,7 +44,7 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
   private static SimpleExoPlayer mExoPlayer;
   private static MediaSessionCompat mMediaSession;
   FragmentStepDetailBinding binding;
-  private Recipe mRecipe;
+  private Recipe recipe;
   //this is so it does not collide with index 0
   private int mStepIndex = -1;
   private Context mContext;
@@ -148,7 +150,7 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
   }
 
   public void setRecipe(Recipe recipe) {
-    mRecipe = recipe;
+    this.recipe = recipe;
   }
 
   public void bindStep(int index) {
@@ -159,19 +161,19 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
 
     unloadStep();
 
-    if (mRecipe == null) {
+    if (recipe == null) {
       return;
     }
 
-    if (index >= mRecipe.getSteps().size()) {
+    if (index >= recipe.getSteps().size()) {
       return;
     }
 
-    Step step = mRecipe.getSteps().get(index);
+    Step step = recipe.getSteps().get(index);
 
     //save index for next button
     mStepIndex = index;
-    setHasNextStep(index < mRecipe.getSteps().size() - 1);
+    setHasNextStep(index < recipe.getSteps().size() - 1);
 
     if (mSetStepIndexHandler != null) {
       mSetStepIndexHandler.handleSetStepIndex(index);
@@ -183,11 +185,23 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
     boolean showPlayer = false;
     try {
       if (step.getVideoURL().length() > 0) {
+        binding.ivThumbnail.setVisibility(View.GONE);
+        binding.pvExoPlayer.setVisibility(View.VISIBLE);
+
         Uri videoUri = Uri.parse(step.getVideoURL());
         if (videoUri != null) {
           showPlayer = true;
           bindExoPlayer(videoUri);
         }
+      } else {
+        binding.ivThumbnail.setVisibility(View.VISIBLE);
+        binding.pvExoPlayer.setVisibility(View.GONE);
+
+        Picasso.with(getActivity())
+            .load(step.getThumbnailURL())
+            .placeholder(R.drawable.ic_launcher_background)
+            .error(R.drawable.err)
+            .into(binding.ivThumbnail);
       }
     } catch (Exception ex) {
       showPlayer = false;
@@ -286,6 +300,20 @@ public class StepDetailFragment extends Fragment implements ExoPlayer.EventListe
 
   @Override public void onPositionDiscontinuity() {
 
+  }
+
+  @Override public void onPause() {
+    super.onPause();
+    if (Util.SDK_INT <= 23) {
+      releasePlayer();
+    }
+  }
+
+  @Override public void onStop() {
+    super.onStop();
+    if (Util.SDK_INT > 23) {
+      releasePlayer();
+    }
   }
 
   public void skipOneExoBind() {

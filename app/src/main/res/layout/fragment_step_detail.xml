@@ -41,7 +41,19 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             >
-
+          <ImageView
+              android:id="@+id/iv_thumbnail"
+              android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:layout_marginLeft="0dp"
+              android:layout_marginRight="0dp"
+              android:layout_marginTop="0dp"
+              android:scaleType="fitCenter"
+              android:visibility="gone"
+              app:layout_constraintLeft_toLeftOf="parent"
+              app:layout_constraintRight_toRightOf="parent"
+              app:layout_constraintTop_toTopOf="parent"
+              />
 
           <com.google.android.exoplayer2.ui.SimpleExoPlayerView
               android:id="@+id/pv_exo_player"
@@ -53,9 +65,7 @@
               app:layout_constraintLeft_toLeftOf="parent"
               app:layout_constraintRight_toRightOf="parent"
               app:layout_constraintTop_toTopOf="parent"
-              >
-
-          </com.google.android.exoplayer2.ui.SimpleExoPlayerView>
+              />
 
         </FrameLayout>
 
