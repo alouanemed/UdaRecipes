@@ -4,6 +4,7 @@ import android.arch.lifecycle.LifecycleRegistry;
 import android.content.Intent;
 import android.databinding.DataBindingUtil;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.Nullable;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
@@ -49,6 +50,8 @@ public class RecipeDetailActivity extends AppCompatActivity
     stepDetailFragment = (StepDetailFragment) fm.findFragmentById(R.id.step_detail_fragment);
     if (stepDetailFragment != null) {
       stepDetailFragment.setRecipe(recipe);
+
+      new Handler().post(() -> stepDetailFragment.bindStep(0));
     }
   }
 
@@ -63,15 +66,13 @@ public class RecipeDetailActivity extends AppCompatActivity
   @Override public void onStepClickedWithPosition(Step step, int position) {
     if (stepDetailFragment != null && stepDetailFragment.isAdded()) {
       //has detail fragment
+
       stepDetailFragment.bindStep(position);
     } else {
-      Class destinationClass = StepDetailActivity.class;
-      Intent intentToStartDetailActivity = new Intent(this, destinationClass);
-
       Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipe);
       Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
 
-      this.startActivity(intentToStartDetailActivity);
+      this.startActivity(new Intent(this, StepDetailActivity.class));
     }
   }
 }
