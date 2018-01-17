@@ -7,5 +7,5 @@
   <string name="prev_step_text">Previous</string>
 
   <string name="step_detail_title">Step Number %1$s</string>
-
+  <string name="no_recipe_err">Sorry, No recipe found</string>
 </resources>
