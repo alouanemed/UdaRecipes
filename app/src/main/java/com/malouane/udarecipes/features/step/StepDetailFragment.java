@@ -48,8 +48,7 @@ public class StepDetailFragment extends Fragment {
     try {
       listener = (onStepNavigation) activity;
     } catch (ClassCastException e) {
-      throw new ClassCastException(
-          activity.toString() + " must implement OnPrevbinding.bNextStepClickListener");
+      throw new ClassCastException(activity.toString() + " must implement onStepNavigation");
     }
   }
 

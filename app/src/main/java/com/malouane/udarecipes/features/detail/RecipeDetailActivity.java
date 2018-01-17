@@ -17,14 +17,14 @@ import com.malouane.udarecipes.features.step.StepDetailFragment;
 import com.orhanobut.hawk.Hawk;
 
 public class RecipeDetailActivity extends AppCompatActivity
-    implements StepsListCallback, Injectable {
+    implements StepsListCallback, Injectable, StepDetailFragment.onStepNavigation {
 
-  private static final String KEY_RECIPE_POSTER = "KEY_RECIPE_POSTER";
   LifecycleRegistry lifecycleRegistry = new LifecycleRegistry(this);
   ActivityRecipeDetailsBinding binding;
   Recipe recipe;
   private DetailsListFragment detailsListFragment;
   private StepDetailFragment stepDetailFragment;
+  private int selectedPosition;
 
   @Override protected void onCreate(@Nullable Bundle savedInstanceState) {
     super.onCreate(savedInstanceState);
@@ -65,8 +65,32 @@ public class RecipeDetailActivity extends AppCompatActivity
     } else {
       Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipe);
       Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
-
+      selectedPosition = position;
       this.startActivity(new Intent(this, StepDetailActivity.class));
+    }
+  }
+
+  @Override public void onPrevButtonClicked() {
+    selectedPosition--;
+    if (selectedPosition < 1) {
+      selectedPosition = recipe.getSteps().size() - 1;
+    }
+
+    updateStep();
+  }
+
+  @Override public void onNextButtonClicked() {
+    selectedPosition++;
+
+    if (selectedPosition > recipe.getSteps().size() - 1) {
+      selectedPosition = 0;
+    }
+    updateStep();
+  }
+
+  private void updateStep() {
+    if (stepDetailFragment != null) {
+      stepDetailFragment.bindStep(recipe.getSteps().get(selectedPosition));
     }
   }
 }
