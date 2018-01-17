@@ -47,11 +47,7 @@ public class RecipeDetailActivity extends AppCompatActivity
     detailsListFragment.bindRecipe(recipe);
 
     stepDetailFragment = (StepDetailFragment) fm.findFragmentById(R.id.step_detail_fragment);
-    if (stepDetailFragment != null) {
-      //stepDetailFragment.setRecipe(recipe);
 
-      //      new Handler().post(() -> stepDetailFragment.bindStep(0));
-    }
   }
 
   @Override public LifecycleRegistry getLifecycle() {
