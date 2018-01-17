@@ -21,8 +21,15 @@
         <category android:name="android.intent.category.LAUNCHER"/>
       </intent-filter>
     </activity>
-    <activity android:name=".features.detail.RecipeDetailActivity"
-        />
+    <activity
+        android:name=".features.detail.RecipeDetailActivity"
+        android:parentActivityName=".features.main.MainActivity">
+
+      <meta-data
+          android:name="android.support.PARENT_ACTIVITY"
+          android:value=".features.main.MainActivity"/>
+    </activity>
+
     <activity android:name=".features.step.StepDetailActivity"/>
     <activity android:name=".testing.SingleFragmentActivity"/>
 

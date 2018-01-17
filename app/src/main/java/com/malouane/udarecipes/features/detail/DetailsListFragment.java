@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import com.malouane.udarecipes.data.entity.Recipe;
 import com.malouane.udarecipes.data.entity.Step;
 import com.malouane.udarecipes.databinding.FragmentDetailsListBinding;
+import com.orhanobut.hawk.Hawk;
 
 public class DetailsListFragment extends Fragment implements StepsListCallback {
 
@@ -73,6 +74,7 @@ public class DetailsListFragment extends Fragment implements StepsListCallback {
   }
 
   @Override public void onStepClickedWithPosition(Step step, int position) {
+    Hawk.put(Step.KEY_STEP, step);
     callback.onStepClickedWithPosition(step, position);
   }
 

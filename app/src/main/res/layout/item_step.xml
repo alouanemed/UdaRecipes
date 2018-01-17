@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     >
@@ -30,10 +31,11 @@
       <ImageView
           android:id="@+id/iv_step_thumbnail"
           android:layout_width="@dimen/step_image_width"
-          android:layout_height="wrap_content"
+          android:layout_height="match_parent"
           android:contentDescription="step_thumbnail"
-          android:scaleType="center"
-          card_view:srcCompat="@drawable/ic_movie_black_24dp"
+          android:scaleType="fitCenter"
+          android:tint="@color/primaryColor"
+          app:srcCompat="@drawable/ic_movie_black_24dp"
           />
 
       <android.support.constraint.ConstraintLayout

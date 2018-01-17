@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     >
   <data>
     <variable
@@ -9,130 +8,93 @@
         type="com.malouane.udarecipes.data.entity.Step"
         />
   </data>
-  <android.support.constraint.ConstraintLayout
-      android:id="@+id/cl_step_details"
+
+  <ScrollView
       android:layout_width="match_parent"
       android:layout_height="match_parent"
+      android:fillViewport="true"
       >
-
-    <ScrollView
-        android:id="@+id/sv_step_detail"
+    <android.support.constraint.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        android:layout_height="wrap_content"
         >
-
-
-      <LinearLayout
-          android:id="@+id/ll_step_details"
-          android:layout_width="match_parent"
+      <TextView
+          android:id="@+id/tv_short_description"
+          android:layout_width="0dp"
           android:layout_height="wrap_content"
-          android:orientation="vertical"
+          android:padding="@dimen/standard_padding"
+          android:text="@{step.shortDescription}"
+          android:textAlignment="center"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toTopOf="parent"
+          style="@style/TextAppearance.AppCompat.Headline"
+
+          />
+      <RelativeLayout
+          android:id="@+id/pv_exo_player_container"
+          android:layout_width="0dp"
+          android:layout_height="@dimen/default_exo_player_height"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@+id/tv_short_description"
           >
-
-        <FrameLayout
-            android:id="@+id/fl_exo_player"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/default_exo_player_height"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            >
-          <ImageView
-              android:id="@+id/iv_thumbnail"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              android:scaleType="fitCenter"
-              android:visibility="gone"
-              app:layout_constraintLeft_toLeftOf="parent"
-              app:layout_constraintRight_toRightOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              />
-
-          <com.google.android.exoplayer2.ui.SimpleExoPlayerView
-              android:id="@+id/pv_exo_player"
-              android:layout_width="match_parent"
-              android:layout_height="wrap_content"
-              android:layout_marginLeft="0dp"
-              android:layout_marginRight="0dp"
-              android:layout_marginTop="0dp"
-              app:layout_constraintLeft_toLeftOf="parent"
-              app:layout_constraintRight_toRightOf="parent"
-              app:layout_constraintTop_toTopOf="parent"
-              />
-
-        </FrameLayout>
-
-        <TextView
-            android:id="@+id/tv_short_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="16dp"
-            android:text="@{step.shortDescription}"
-            android:textColor="@color/primaryDarkColor"
-            android:textSize="@dimen/normal_text_header_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/fl_exo_player"
-            tools:text="Step Detail"
-            />
-
-        <TextView
-            android:id="@+id/tv_step_description"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginBottom="16dp"
-            android:layout_marginEnd="16dp"
-            android:layout_marginStart="16dp"
-            android:lineSpacingMultiplier="@dimen/step_body_line_spacing_multiplier"
-            android:text="@{step.description}"
-            android:textColor="@color/black"
-            android:textSize="@dimen/normal_text_size"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv_short_description"
-            tools:text="These are the instructions for the step"
-            />
-
         <ImageView
-            android:id="@+id/iv_button_placeholder"
+            android:id="@+id/iv_thumbnail"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/button_height"
-            android:background="@android:color/transparent"
+            android:layout_height="match_parent"
+            android:scaleType="fitXY"
             android:visibility="gone"
+            app:srcCompat="@drawable/ic_movie_black_24dp"
             />
-
-      </LinearLayout>
-
-    </ScrollView>
-
-    <Button
-        android:id="@+id/b_next_step"
-        android:layout_width="wrap_content"
-        android:layout_height="@dimen/button_height"
-        android:layout_marginBottom="16dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:background="@color/colorAccent"
-        android:paddingEnd="@dimen/standard_padding"
-        android:paddingStart="@dimen/standard_padding"
-        android:text="@string/next_step_text"
-        android:textColor="@color/white"
-        android:textSize="@dimen/button_text_size"
-        android:visibility="visible"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="parent"
-        tools:text="@string/next_step_text"
-        />
-
-  </android.support.constraint.ConstraintLayout>
+        <com.google.android.exoplayer2.ui.SimpleExoPlayerView
+            android:id="@+id/pv_exo_player"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:fastforward_increment="5000"
+            app:rewind_increment="5000"
+            />
+      </RelativeLayout>
+      <TextView
+          android:id="@+id/tv_step_description"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="@{step.description}"
+          app:layout_constraintLeft_toRightOf="parent"
+          app:layout_constraintRight_toLeftOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/pv_exo_player_container"
+          style="@style/TextAppearance.AppCompat.Medium"
+          />
+      <Button
+          android:id="@+id/b_prev"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@color/colorAccent"
+          android:paddingEnd="@dimen/standard_padding"
+          android:paddingStart="@dimen/standard_padding"
+          android:text="@string/prev_step_text"
+          android:textColor="@color/white"
+          android:textSize="@dimen/button_text_size"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintLeft_toLeftOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/tv_step_description"
+          app:layout_constraintVertical_bias="1.0"
+          />
+      <Button
+          android:id="@+id/b_next"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:background="@color/colorAccent"
+          android:paddingEnd="@dimen/standard_padding"
+          android:paddingStart="@dimen/standard_padding"
+          android:text="@string/next_step_text"
+          android:textColor="@color/white"
+          android:textSize="@dimen/button_text_size"
+          app:layout_constraintBottom_toBottomOf="parent"
+          app:layout_constraintRight_toRightOf="parent"
+          app:layout_constraintTop_toBottomOf="@id/tv_step_description"
+          app:layout_constraintVertical_bias="1.0"
+          />
+    </android.support.constraint.ConstraintLayout>
+  </ScrollView>
 </layout>

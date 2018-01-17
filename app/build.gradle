@@ -71,10 +71,9 @@ dependencies {
   implementation rootProject.ext.retrofitRxAdapter
   implementation rootProject.ext.retrofitGson
   implementation rootProject.ext.constrains
-
-
   implementation rootProject.ext.hawk
   implementation rootProject.ext.exoPlayer
+  implementation rootProject.ext.exoPlayerui
   testImplementation rootProject.ext.junit
   testImplementation rootProject.ext.hamcrest
   androidTestImplementation rootProject.ext.mockito

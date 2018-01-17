@@ -5,12 +5,13 @@ import com.google.gson.annotations.SerializedName;
 
 public class Step {
 
+  public static final String KEY_STEP = "KEY_STEP";
+  public static final String STEP_INDEX_EXTRA = "StepDetailActivity_STEP_INDEX_EXTRA";
   @SerializedName("id") @Expose private Integer id;
   @SerializedName("shortDescription") @Expose private String shortDescription;
   @SerializedName("description") @Expose private String description;
   @SerializedName("videoURL") @Expose private String videoURL;
   @SerializedName("thumbnailURL") @Expose private String thumbnailURL;
-
   public Step(Integer id, String shortDescription, String description, String videoURL,
       String thumbnailURL) {
     this.id = id;

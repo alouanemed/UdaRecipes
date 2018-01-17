@@ -1,10 +1,10 @@
 package com.malouane.udarecipes.features.main;
 
-import android.arch.lifecycle.LifecycleFragment;
 import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v7.widget.GridLayoutManager;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -16,7 +16,7 @@ import com.malouane.udarecipes.features.detail.RecipeDetailActivity;
 import com.orhanobut.hawk.Hawk;
 import javax.inject.Inject;
 
-public class RecipeListFragment extends LifecycleFragment
+public class RecipeListFragment extends Fragment
     implements Injectable, RecipeListCallback {
 
   @Inject RecipeListViewModel recipeListViewModel;

@@ -26,8 +26,7 @@ public class IngredientListWidgetService extends RemoteViewsService {
     @Inject DataManager dataManager;
 
     GridRemoteViewsFactory(Application application) {
-      DaggerAppComponent.builder()
-          .application((UdaRecipesApp) application)
+      DaggerAppComponent.builder().application(application)
           .build()
           .inject((UdaRecipesApp) application);
     }
