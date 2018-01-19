@@ -5,6 +5,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 import com.malouane.udarecipes.R;
 import com.malouane.udarecipes.data.entity.Recipe;
+import com.malouane.udarecipes.data.entity.Step;
 import com.orhanobut.hawk.Hawk;
 import timber.log.Timber;
 
@@ -73,6 +74,9 @@ public class StepDetailActivity extends AppCompatActivity
   }
 
   private void updateStep() {
-    if (stepDetailFragment != null) stepDetailFragment.bindStep(recipe.getSteps().get(mStepIndex));
+    if (stepDetailFragment != null) {
+      stepDetailFragment.bindStep(recipe.getSteps().get(mStepIndex));
+      Hawk.put(Step.KEY_STEP, recipe.getSteps().get(mStepIndex));
+    }
   }
 }

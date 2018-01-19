@@ -30,7 +30,11 @@
           android:value=".features.main.MainActivity"/>
     </activity>
 
-    <activity android:name=".features.step.StepDetailActivity"/>
+    <activity
+        android:name=".features.step.StepDetailActivity"
+        android:parentActivityName=".features.detail.RecipeDetailActivity"
+
+        />
     <activity android:name=".testing.SingleFragmentActivity"/>
 
     <receiver android:name=".widget.RecipeWidgetProvider">

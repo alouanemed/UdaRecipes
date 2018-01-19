@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -150,7 +151,7 @@ public class StepDetailFragment extends Fragment {
 
   private void setupExoPlayerView() {
     playerHelper.releaseExoPlayer();
-    if ((step.getVideoURL() == null) || step.getVideoURL().isEmpty()) {
+    if (!TextUtils.isEmpty(step.getVideoURL())) {
       showVideoEmptyView();
     } else {
       showExoPlayerView();
@@ -161,8 +162,7 @@ public class StepDetailFragment extends Fragment {
     mPlayerView.setVisibility(View.GONE);
     binding.ivThumbnail.setVisibility(View.VISIBLE);
     binding.pvExoPlayer.setVisibility(View.GONE);
-
-    if (!step.getThumbnailURL().isEmpty()) {
+    if (!TextUtils.isEmpty(step.getThumbnailURL())) {
       Picasso.with(getActivity())
           .load(step.getThumbnailURL())
           .placeholder(R.drawable.ic_launcher_background)
