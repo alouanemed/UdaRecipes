@@ -71,15 +71,14 @@ public class StepDetailFragment extends Fragment {
       int resumeWindow = savedInstanceState.getInt(BUNDLE_KEY_RESUME_WINDOW);
       long resumePosition = savedInstanceState.getLong(CURRENT_POS_STATE);
       playerHelper.setExoPlayerResumePosition(resumeWindow, resumePosition);
-      step = Hawk.get(Step.KEY_STEP);
       initializeViewContents();
       controlFullModeAccordingToOrientation();
     } else {
       exitFullMode();
       playerHelper.clearExoPlayerResumePosition();
-      step = Hawk.get(Step.KEY_STEP);
       initializeViewContents();
     }
+    step = Hawk.get(Step.KEY_STEP);
 
     if (step != null) bindStep(step);
 
@@ -151,7 +150,7 @@ public class StepDetailFragment extends Fragment {
 
   private void setupExoPlayerView() {
     playerHelper.releaseExoPlayer();
-    if (!TextUtils.isEmpty(step.getVideoURL())) {
+    if (TextUtils.isEmpty(step.getVideoURL())) {
       showVideoEmptyView();
     } else {
       showExoPlayerView();

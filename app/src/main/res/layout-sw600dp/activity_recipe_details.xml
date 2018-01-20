@@ -12,8 +12,9 @@
     <fragment
         android:id="@+id/step_list_fragment"
         android:name="com.malouane.udarecipes.features.detail.DetailsListFragment"
-        android:layout_width="@dimen/step_list_width"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="2"
         />
 
     <View
@@ -25,8 +26,10 @@
     <fragment
         android:id="@+id/step_detail_fragment"
         android:name="com.malouane.udarecipes.features.step.StepDetailFragment"
-        android:layout_width="match_parent"
+        android:layout_width="0dp"
         android:layout_height="match_parent"
+        android:layout_weight="3"
         />
+
   </LinearLayout>
 </layout>

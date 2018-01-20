@@ -59,13 +59,16 @@ public class RecipeDetailActivity extends AppCompatActivity
   }
 
   @Override public void onStepClickedWithPosition(Step step, int position) {
+    selectedPosition = position;
+
     if (stepDetailFragment != null && stepDetailFragment.isAdded()) {
-      //has detail fragment
+      Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
       Hawk.put(Step.KEY_STEP, step);
+      stepDetailFragment.bindStep(recipe.getSteps().get(selectedPosition));
+
     } else {
       Hawk.put(StepDetailActivity.RECIPE_EXTRA, recipe);
       Hawk.put(StepDetailActivity.STEP_INDEX_EXTRA, position);
-      selectedPosition = position;
       this.startActivity(new Intent(this, StepDetailActivity.class));
     }
   }

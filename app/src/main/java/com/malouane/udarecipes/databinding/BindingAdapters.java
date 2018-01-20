@@ -10,8 +10,7 @@ public final class BindingAdapters {
 
   @BindingAdapter(value = "url") public static void loadImageUrl(ImageView view, String url) {
     if (url != null && !url.equals("")) {
-      Picasso.with(view.getContext()).load(url)
-          .placeholder(R.drawable.ic_movie_black_24dp)
+      Picasso.with(view.getContext()).load(url).placeholder(R.color.primaryDarkColor)
           .into(view);
     }
   }

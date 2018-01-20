@@ -73,6 +73,5 @@ public class RecipeListFragment extends Fragment
   @Override public void onRecipeClicked(Recipe recipeEntity, View sharedView) {
     Hawk.put(Recipe.KEY_RECIPE, recipeEntity);
     startActivity(new Intent(getActivity(), RecipeDetailActivity.class));
-
   }
 }
