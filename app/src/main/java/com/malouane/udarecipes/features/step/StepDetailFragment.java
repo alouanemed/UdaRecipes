@@ -144,7 +144,6 @@ public class StepDetailFragment extends Fragment {
   private void initializeViewContents() {
     if (step != null) {
       setupExoPlayerView();
-      setupNavigationVisibility();
     }
   }
 
@@ -177,15 +176,11 @@ public class StepDetailFragment extends Fragment {
   }
 
   private void initializeExoPlayerView() {
+/*    if (playerHelper == null)
+      playerHelper = new ExoPlayerHelper(getActivity());*/
+
     SimpleExoPlayer exoPlayer = playerHelper.getInitializedExoPlayer(step);
     mPlayerView.setPlayer(exoPlayer);
-  }
-
-  private void setupNavigationVisibility() {
-/*    if (!isFullMode && DataStorage.getInstance().hasNextStep()) binding.bNextStep.setVisibility(View.VISIBLE);
-    else binding.bNextStep.setVisibility(View.INVISIBLE);
-    if (!isFullMode && DataStorage.getInstance().hasPreviousStep()) binding.bPrev.setVisibility(View.VISIBLE);
-    else binding.bPrev.setVisibility(View.INVISIBLE);*/
   }
 
   @Override public void onPause() {
@@ -210,7 +205,7 @@ public class StepDetailFragment extends Fragment {
     super.onStart();
     if (needToReloadExoPlayer()) {
       exitFullMode();
-      initializeExoPlayerView();
+      //initializeExoPlayerView();
     }
   }
 
